@@ -33,3 +33,21 @@ INSERT INTO discovery (title, url, description, date_added, category_id) VALUES 
 INSERT INTO discovery (title, url, description, date_added, category_id) VALUES ('pretium quis lectus', 'https://businessweek.com/nisi/vulputate/nonummy.xml', 'orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce', '2020-09-05 06:09:55', 1);
 INSERT INTO discovery (title, url, description, date_added, category_id) VALUES ('venenatis turpis', 'https://w3.org/diam/in/magna.aspx', 'sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod', '2020-02-18 15:15:44', 1);
 INSERT INTO discovery (title, url, description, date_added, category_id) VALUES ('at velit', 'https://1688.com/porttitor/lacus/at/turpis/donec/posuere.html', 'magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui', '2020-08-29 11:54:58', 3);
+
+
+CREATE TABLE IF NOT EXISTS user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    registration_date DATETIME NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS user_role (
+    username VARCHAR(50) NOT NULL,
+    role_name VARCHAR(20) NOT NULL DEFAULT 'USER',
+    PRIMARY KEY (username, role_name),
+    FOREIGN KEY (username) REFERENCES user(username)
+);
+
+SELECT * FROM readstack.user
