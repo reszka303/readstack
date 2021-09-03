@@ -50,4 +50,12 @@ CREATE TABLE IF NOT EXISTS user_role (
     FOREIGN KEY (username) REFERENCES user(username)
 );
 
-SELECT * FROM readstack.user
+SELECT * FROM readstack.user;
+
+ALTER TABLE discovery
+    ADD  user_id INT,
+    ADD FOREIGN KEY (user_id) REFERENCES user(id);
+
+UPDATE discovery SET user_id = 1;
+
+ALTER TABLE discovery MODIFY COLUMN user_id INT NOT NULL;
